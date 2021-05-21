@@ -404,7 +404,7 @@ class LogicModel(Model):
         last_skip_valid = False  # do not perform continuous validation
         while True:
             if self.info['loop']['epoch'] == 2 and self.need_switch:
-                self.model = self.model_9
+                self.model = self.model_9                                       ## ==> our MyBackboneModel
                 self.model_pred = self.model_9_pred
                 self.switch = True
                 self.update_model()

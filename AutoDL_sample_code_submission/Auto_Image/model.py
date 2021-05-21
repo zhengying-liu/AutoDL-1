@@ -25,6 +25,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # LOGGER = get_logger(__name__)
 
 
+
+
+
 def set_random_seed_all(seed, deterministic=False):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
