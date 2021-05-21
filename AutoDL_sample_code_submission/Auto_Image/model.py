@@ -21,11 +21,11 @@ class Model():
         # The learner can absorb `training_info` as its own attribute
         self.learner = self.hp_optimizer.fit(self.training_info)
 
-    def train(self, dataset):
+    def train(self, dataset, remaining_time_budget=None):
         dataset_uw = self.data_ingestor(dataset)    # uw for universal workflow
         self.predictor = self.learner.learn(dataset_uw)
 
-    def test(self, dataset):
+    def test(self, dataset, remaining_time_budget=None):
         dataset_uw = self.data_ingestor(dataset)
         predictions = self.predictor.predict(dataset_uw)
         return predictions
