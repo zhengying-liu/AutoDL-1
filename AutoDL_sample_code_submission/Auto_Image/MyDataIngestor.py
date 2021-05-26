@@ -1,6 +1,9 @@
 import Auto_Image.skeleton
 
 
+# Need to revise according to api
+# the correct version are in data_ingestor.py
+
 class MyDataIngestor(self):
     def ingest(self, session, dataset, num_samples, input_shape, batch_size, steps_per_epoch):
         # copied from logic.py, build_or_get_train_dataloader()
