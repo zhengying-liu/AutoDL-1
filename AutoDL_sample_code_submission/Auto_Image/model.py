@@ -31,4 +31,5 @@ class Model():
     def test(self, dataset, remaining_time_budget=None):
         dataset_uw = self.data_ingestor.ingest(dataset)
         predictions = self.predictor.predict(dataset_uw)
+        self.done_training = True
         return predictions

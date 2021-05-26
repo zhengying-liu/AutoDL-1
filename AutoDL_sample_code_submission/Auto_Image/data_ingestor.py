@@ -7,8 +7,9 @@ import tensorflow as tf
 
 class MyDataIngestor(DataIngestor):
 
-    def __init__(self, session):
+    def __init__(self, session=None, info=None):
       self.session = session
+      self.info = info
 
     def ingest(self, dataset):
         """
