@@ -60,13 +60,16 @@ class Model:
         # Convert training dataset to necessary format and
         # store as self.domain_dataset_train
 
-        try:
-            self.domain_model.train(dataset, remaining_time_budget)
-            self.done_training = self.domain_model.done_training
+        self.domain_model.train(dataset, remaining_time_budget)
+        self.done_training = self.domain_model.done_training
 
-        except Exception as exp:
-            self.has_exception = True
-            self.done_training = True
+        # try:
+        #     self.domain_model.train(dataset, remaining_time_budget)
+        #     self.done_training = self.domain_model.done_training
+
+        # except Exception as exp:
+        #     self.has_exception = True
+        #     self.done_training = True
 
     def test(self, dataset, remaining_time_budget=None):
         """Test method of domain-specific model."""
@@ -77,18 +80,23 @@ class Model:
         if self.done_training is True or self.has_exception is True:
             return self.y_pred_last
 
-        try:
-            Y_pred = self.domain_model.test(dataset, remaining_time_budget=remaining_time_budget)
+        Y_pred = self.domain_model.test(dataset, remaining_time_budget=remaining_time_budget)
 
-            self.y_pred_last = Y_pred
-            self.done_training = self.domain_model.done_training
+        self.y_pred_last = Y_pred
+        self.done_training = self.domain_model.done_training
 
-        except MemoryError as mem_error:
-            self.has_exception = True
-            self.done_training = True
-        except Exception as exp:
-            self.has_exception = True
-            self.done_training = True
+        # try:
+        #     Y_pred = self.domain_model.test(dataset, remaining_time_budget=remaining_time_budget)
+
+        #     self.y_pred_last = Y_pred
+        #     self.done_training = self.domain_model.done_training
+
+        # except MemoryError as mem_error:
+        #     self.has_exception = True
+        #     self.done_training = True
+        # except Exception as exp:
+        #     self.has_exception = True
+        #     self.done_training = True
 
         return self.y_pred_last
 
