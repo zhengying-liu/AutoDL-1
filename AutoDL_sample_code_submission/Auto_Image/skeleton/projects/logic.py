@@ -224,7 +224,7 @@ class LogicModel(Model):
             dataset = skeleton.data.TFDataset(self.session, dataset, num_items)
             transform = tv.transforms.Compose([
             ])
-            dataset = skeleton.data.TransformDataset(dataset, transform, index=0)
+            dataset = skeleton.data.TransformDataset(dataset, transform, index=0) # Pytorch Dataset
 
             self.dataloaders['train'] = skeleton.data.FixedSizeDataLoader(
                 dataset,
