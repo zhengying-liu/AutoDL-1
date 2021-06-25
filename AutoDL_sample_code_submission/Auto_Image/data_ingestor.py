@@ -54,7 +54,6 @@ class MyDataIngestor2(DataIngestor):
         """
         self.prepare_hyperparams() # get self.info and self.hyperparams
 
-
         if not self.info['condition']['first']['train']:
             return self.build_or_get_dataloader('train')
 
