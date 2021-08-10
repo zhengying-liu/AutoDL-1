@@ -1,4 +1,4 @@
-[English](./README_EN.md) | 简体中文
+English | [简体中文](./README.md)
 
 <p align="center">
 
@@ -15,175 +15,113 @@
 </p>
 
 
-
-<!-- # NeurIPS AutoDL Challenge 冠军方案 -->
+<!-- # NeurIPS AutoDL Challenge 1'st Solution -->
 
 ![img](assets/autodl_logo_full.png)
 
-[AutoDL Challenge@NeurIPS](https://autodl.chalearn.org/neurips2019) 冠军方案，竞赛细节参见 [AutoDL Competition](https://autodl.lri.fr/competitions/162)。
+**1st** solution for [AutoDL Challenge@NeurIPS](https://autodl.chalearn.org/neurips2019), competition rules can be found at [AutoDL Competition](https://autodl.lri.fr/competitions/162).
 
-# 1. AutoDL是什么？
+# 1. Motivation 
+There exists a series of common and tough problems in the real world, such as limited resources (CPU/ memory), skewed data, hand-craft features, model selection, network architecture details tuning, sensitivity of pre-trained models, sensitivity of hyperparameters and so on. How to solve them wholly and efficiently?
 
-AutoDL聚焦于自动进行任意模态（图像、视频、语音、文本、表格数据）多标签分类的通用算法，可以用一套标准算法流解决现实世界的复杂分类问题，解决调数据、特征、模型、超参等烦恼，最短10秒就可以做出性能优异的分类器。本工程在**不同领域的24个离线数据集、15个线上数据集都获得了极为优异的成绩**。AutoDL拥有以下特性：
 
-☕ **全自动**：全自动深度学习/机器学习框架，全流程无需人工干预。数据、特征、模型的所有细节都已调节至最佳，统一解决了资源受限、数据倾斜、小数据、特征工程、模型选型、网络结构优化、超参搜索等问题。**只需要准备数据，开始AutoDL，然后喝一杯咖啡**。
+# 2. Solution 
+AutoDL concentrates on developing generic algorithms for multi-label classification problems in ANY modalities: image, video, speech, text and tabular data without ANY human intervention.  **Ten seconds** at the soonest, our solution achieved SOTA performances on all the 24 offline datasets and 15 online datasets, beating a number of top players in the world.
 
-🌌 **通用性**：支持**任意**模态，包括图像、视频、音频、文本和结构化表格数据，支持**任意多标签分类问题**，包括二分类、多分类、多标签分类。它在**不同领域**都获得了极其优异的成绩，如行人识别、行人动作识别、人脸识别、声纹识别、音乐分类、口音分类、语言分类、情感分类、邮件分类、新闻分类、广告优化、推荐系统、搜索引擎、精准营销等等。
 
-👍 **效果出色**：AutoDL竞赛获得压倒性优势的冠军方案，包含对传统机器学习模型和最新深度学习模型支持。模型库包括从LR/SVM/LGB/CGB/XGB到ResNet*/MC3/DNN/ThinResnet*/TextCNN/RCNN/GRU/BERT等优选出的冠军模型。
-
-⚡ **极速/实时**：最快只需十秒即可获得极具竞争力的模型性能。结果实时刷新（秒级），无需等待即可获得模型实时效果反馈。
-
-# 2. 目录
+# 3. Table of Contents
 <!-- TOC -->
 
-- [1. AutoDL是什么？](#1-autodl是什么)
-- [2. 目录](#2-目录)
-- [3. 效果](#3-效果)
-- [4. AutoDL竞赛使用说明](#4-autodl竞赛使用说明)
-    - [4.1. 使用效果示例（横轴为对数时间轴，纵轴为AUC）](#41-使用效果示例横轴为对数时间轴纵轴为auc)
-- [5. 安装](#5-安装)
-    - [5.1. pip 安装](#51-pip-安装)
-- [6. 快速上手](#6-快速上手)
-    - [6.1. 快速上手之AutoDL本地效果测试](#61-快速上手之autodl本地效果测试)
-    - [6.2. 快速上手之图像分类](#62-快速上手之图像分类)
-    - [6.3. 快速上手之视频分类](#63-快速上手之视频分类)
-    - [6.4. 快速上手之音频分类](#64-快速上手之音频分类)
-    - [6.5. 快速上手之文本分类](#65-快速上手之文本分类)
-    - [6.6. 快速上手之表格分类](#66-快速上手之表格分类)
-- [7. 可用数据集](#7-可用数据集)
-    - [7.1. (可选) 下载数据集](#71-可选-下载数据集)
-    - [7.2. 公共数据集信息](#72-公共数据集信息)
-- [8. 贡献代码](#8-贡献代码)
-- [9. 加入社区](#9-加入社区)
-- [10. 开源协议](#10-开源协议)
+- [1. Motivation](#1-motivation)
+- [2. Solution](#2-solution)
+- [3. Table of Contents](#3-table-of-contents)
+- [4. Features](#4-features)
+- [5. Evaluation](#5-evaluation)
+- [6. Installation](#6-installation)
+  - [6.1. With pip](#61-with-pip)
+- [7. Quick Tour](#7-quick-tour)
+  - [7.1. Run local test tour](#71-run-local-test-tour)
+  - [7.2. Tour of Image Classification](#72-tour-of-image-classification)
+  - [7.3. Tour of Video Classification](#73-tour-of-video-classification)
+  - [7.4. Tour of Speech Classification](#74-tour-of-speech-classification)
+  - [7.5. Tour of Text Classification](#75-tour-of-text-classification)
+  - [7.6. Tour of Tabular Classification](#76-tour-of-tabular-classification)
+- [8. Public Datasets](#8-public-datasets)
+  - [8.1. Optional: Download public datasets](#81-optional-download-public-datasets)
+  - [8.2. Public datasets sample info](#82-public-datasets-sample-info)
+- [9. Usage for AutoDL local development and testing](#9-usage-for-autodl-local-development-and-testing)
+- [10. Contributing](#10-contributing)
+- [11. Contact us](#11-contact-us)
+- [12. Join the Community](#12-join-the-community)
+- [13. License](#13-license)
 
 <!-- /TOC -->
 
 
-# 3. 效果
-- **预赛榜单（DeepWisdom总分第一，平均排名1.2，在5个数据集中取得了4项第一）**
+# 4. Features
+- **Full-AutoML/AutoDL**: Fully automated Deep Learning without ANY human intervention covering the whole pipelines.
+- **Generic & Universal**: Supporting ANY modality(image, video, speech, text, tabular) data, and **ANY** classification problems including binary-class, multi-class and multi-label problems.
+- **SOTA**: Winner solution of AutoDL challenge, involving both tranditional machine learning models and deep learning model backbones. 
+- **Out-of-the-Box**: You can use the solution out-of-the-box.
+- **Fast**: You can train your model in **ten seconds** at the soonest to get highly competitive performance.
+- **Real-time**: You can get the performance feedback(AUC score) in real time.
+
+
+# 5. Evaluation
+
+- **Feedback-phase leaderboard: DeepWisdom Top 1, average rank 1.2, won 4 out of 5 datasets.**
 ![img](assets/feedback-lb.png)
 
-- **决赛榜单（DeepWisdom总分第一，平均排名1.8，在10个数据集中取得了7项第一）**
+- **Final-phase leaderboard visualization: DeepWisdom Top 1, average rank 1.2, won 7 out of 10 datasets.**
 ![img](assets/final-lb-visual.png)
 
+# 6. Installation
 
-# 4. AutoDL竞赛使用说明
+This repo is tested on Python 3.6+, PyTorch 1.0.0+ and TensorFlow 2.0.
 
-1. 基础环境
-    ```shell script
-    python>=3.5
-    CUDA 10
-    cuDNN 7.5
-    ```
+You should install AutoDL in a [virtual environment](https://docs.python.org/3/library/venv.html). If you're unfamiliar with Python virtual environments, check out the [user guide](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
 
-2. clone仓库 
-    ```
-    cd <path_to_your_directory>
-    git clone https://github.com/DeepWisdom/AutoDL.git
-    ```
-3. 预训练模型准备
-下载模型 [speech_model.h5](https://github.com/DeepWisdom/AutoDL/releases/download/opensource/thin_resnet34.h5) 放至 `AutoDL_sample_code_submission/at_speech/pretrained_models/` 目录。
+Create a virtual environment with the version of Python you're going to use and activate it.
 
-4. 可选：使用与竞赛同步的docker环境 
-    - CPU
-    ```
-    cd path/to/autodl/
-    docker run -it -v "$(pwd):/app/codalab" -p 8888:8888 evariste/autodl:cpu-latest
-    ```
-    - GPU
-    ```
-    nvidia-docker run -it -v "$(pwd):/app/codalab" -p 8888:8888 evariste/autodl:gpu-latest
-    ```
-5. 数据集准备：使用 `AutoDL_sample_data` 中样例数据集，或批量下载竞赛公开数据集。
+Now, if you want to use AutoDL, you can install it with pip.
 
-6. 进行本地测试
-    ```
-    python run_local_test.py
-    ```
-本地测试完整使用。
-    ```
-    python run_local_test.py -dataset_dir='AutoDL_sample_data/miniciao' -code_dir='AutoDL_sample_code_submission'
-    ```
-您可在 `AutoDL_scoring_output/` 目录中查看实时学习曲线反馈的HTML页面。
+## 6.1. With pip
 
-细节可参考 [AutoDL Challenge official starting_kit](https://github.com/zhengying-liu/autodl_starting_kit_stable).
+AutoDL can be installed using pip as follows:
 
-## 4.1. 使用效果示例（横轴为对数时间轴，纵轴为AUC）
-
-![img](assets/AutoDL-performance-example.png)
-
-可以看出，在五个不同模态的数据集下，AutoDL算法流都获得了极为出色的全时期效果，可以在极短的时间内达到极高的精度。
-
-# 5. 安装 
-
-本仓库在 Python 3.6+, PyTorch 1.3.1 和 TensorFlow 1.15上测试.
-
-你应该在[虚拟环境](https://docs.python.org/3/library/venv.html) 中安装autodl。
-如果对虚拟环境不熟悉，请看 [用户指导](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
-
-用合适的Python版本创建虚拟环境，然后激活它。
-
-## 5.1 windows10 安装过程
-### 5.1.1 安装 cuda 10.0 和 cudnn v7.6.2.24
-- [CUDA 10.0下载](https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exelocal)
-- [cuDNN下载](https://developer.nvidia.com/rdp/cudnn-archive)
-- [百度云](https://pan.baidu.com/s/1BDP2gD7s-R0mcwXcFVe5Wg)  提取码：xb9x 
-
-### 5.1.2 安装 Miniconda3-4.5.4-Windows-x86_64.exe
-- [Miniconda3-4.5.4-Windows-x86_64.exe](https://repo.anaconda.com/miniconda/Miniconda3-4.5.4-Windows-x86_64.exe)
-- [百度云](https://pan.baidu.com/s/1BDP2gD7s-R0mcwXcFVe5Wg)  提取码：xb9x 
-
-### 5.1.3 安装 visualcppbuildtools_full.exe
-- [visualcppbuildtools_full.exe](http://go.microsoft.com/fwlink/?LinkId=691126)
-- [百度云](https://pan.baidu.com/s/1BDP2gD7s-R0mcwXcFVe5Wg)  提取码：xb9x 
-
-### 5.1.4 创建 `start_env.bat` 文件
-
-- 将其移动到安装的 `Miniconda3` 同级目录下
 ```bash
-cmd.exe "/K" .\Miniconda3\Scripts\activate.bat .\Miniconda3
+pip install autodl-gpu 
 ```
 
-### 5.1.5 双击 `start_env.bat` 安装 autodl-gpu
-```bash
-conda install pytorch==1.3.1
-conda install torchvision -c pytorch
-pip install autodl-gpu
-```
-## 5.2 Linux安装
-```bash
-pip install autodl-gpu
-```
-
-# 6. 快速上手
-## 6.1. 快速上手之AutoDL本地效果测试
-指导参见 [快速上手之AutoDL本地效果测试](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/run_local_test_tutorial_chn.md)，样例代码参见 [examples/run_local_test.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_local_test.py)
-
-## 6.2. 快速上手之图像分类
-参见 [快速上手之图像分类](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/image_classification_tutorial_chn.md)，样例代码参见 [examples/run_image_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_image_classification_example.py)
-
-## 6.3. 快速上手之视频分类
-指导参见 [快速上手之视频分类](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/video_classification_tutorial_chn.md)，样例代码参见[examples/run_video_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_video_classification_example.py)
-
-## 6.4. 快速上手之音频分类
-指导参见 [快速上手之音频分类](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/speech_classification_tutorial_chn.md)，样例代码参见[examples/run_speech_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_speech_classification_example.py)
-
-## 6.5. 快速上手之文本分类
-指导参见 [快速上手之文本分类](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/text_classification_tutorial_chn.md)，样例代码参见[examples/run_text_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_text_classification_example.py)。
-
-## 6.6. 快速上手之表格分类
-指导参见 [快速上手之表格分类](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/tabular_classification_tutorial_chn.md)，样例代码参见[examples/run_tabular_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_tabular_classification_example.py).
+# 7. Quick Tour
+## 7.1. Run local test tour
+see [Quick Tour - Run local test tour](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/run_local_test_tutorial_chn.md), see sample code [examples/run_local_test.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_local_test.py).
 
 
-# 7. 可用数据集
-## 7.1. (可选) 下载数据集
+## 7.2. Tour of Image Classification
+see [Quick Tour - Image Classification Demo](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/image_classification_tutorial_chn.md), see sample code [examples/run_image_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_image_classification_example.py)
+
+## 7.3. Tour of Video Classification
+see [Quick Tour - Video Classification Demo](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/video_classification_tutorial_chn.md), see sample code [examples/run_video_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_video_classification_example.py).
+
+## 7.4. Tour of Speech Classification
+see [Quick Tour - Speech Classification Demo](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/speech_classification_tutorial_chn.md), see sample code [examples/run_speech_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_speech_classification_example.py).
+
+## 7.5. Tour of Text Classification
+see [Quick Tour - Text Classification Demo](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/text_classification_tutorial_chn.md), see sample code [examples/run_text_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_text_classification_example.py).
+
+## 7.6. Tour of Tabular Classification
+see [Quick Tour - Tabular Classification Demo](https://github.com/DeepWisdom/AutoDL/tree/pip/docs/tabular_classification_tutorial_chn.md), see sample code [examples/run_tabular_classification_example.py](https://github.com/DeepWisdom/AutoDL/blob/pip/examples/run_tabular_classification_example.py).
+
+
+
+# 8. Public Datasets
+## 8.1. Optional: Download public datasets
 ```bash
 python download_public_datasets.py
 ```
 
-## 7.2. 公共数据集信息
+## 8.2. Public datasets sample info 
 | #   | Name     | Type    | Domain   | Size   | Source      | Data (w/o test labels) | Test labels       |
 | --- | -------- | ------- | -------- | ------ | ----------- | ---------------------- | ----------------- |
 | 1   | Munster  | Image   | HWR      | 18 MB  | MNIST       | munster.data           | munster.solution  |
@@ -212,13 +150,56 @@ python download_public_datasets.py
 | 24  | Madeline | Tabular | --       | 2.6 MB | --          | madeline.data          | madeline.solution |
 
 
-# 8. 贡献代码 
 
-❤️ 请毫不犹豫参加贡献 [Open an issue](https://github.com/DeepWisdom/AutoDL/issues/new) 或提交 PRs。
+# 9. Usage for AutoDL local development and testing
+1. Git clone the repo
+```
+cd <path_to_your_directory>
+git clone https://github.com/DeepWisdom/AutoDL.git
+```
+2. Prepare pretrained models.
+Download model [speech_model.h5](https://github.com/DeepWisdom/AutoDL/releases/download/opensource/thin_resnet34.h5) and put it to `AutoDL_sample_code_submission/at_speech/pretrained_models/` directory.
 
-# 9. 加入社区
+3. Optional: run in the exact same environment as on the challenge platform with docker. 
+    - CPU
+    ```
+    cd path/to/autodl/
+    docker run -it -v "$(pwd):/app/codalab" -p 8888:8888 evariste/autodl:cpu-latest
+    ```
+    - GPU
+    ```
+    nvidia-docker run -it -v "$(pwd):/app/codalab" -p 8888:8888 evariste/autodl:gpu-latest
+    ```
+4. Prepare sample datasets, using the toy data in `AutoDL_sample_data` or download new datasets.
 
-<img src="./assets/AutoDL-QR-102-1130.png" width = "500" height = "180" alt="AutoDL社区" align=center />
+5. Run local test
+```
+python run_local_test.py
+```
+The full usage is
+```
+python run_local_test.py -dataset_dir='AutoDL_sample_data/miniciao' -code_dir='AutoDL_sample_code_submission'
+```
+Then you can view the real-time feedback with a learning curve by opening the
+HTML page in `AutoDL_scoring_output/`.
 
-# 10. 开源协议 
+
+Details can be seen in [AutoDL Challenge official starting_kit](https://github.com/zhengying-liu/autodl_starting_kit_stable).
+
+
+# 10. Contributing
+
+Feel free to dive in! [Open an issue](https://github.com/DeepWisdom/AutoDL/issues/new) or submit PRs.
+
+# 11. Contact us
+[![img](https://github.com/DeepWisdom/AutoDL/blob/master/assets/deepwisdom-logo-white.svg "title")](http://fuzhi.ai/)
+
+
+# 12. Join the Community
+Scan QR code and join AutoDL community!
+
+<img src="./assets/QR-102.png" width = "500" height = "180" alt="AutoDL Community" align=center />
+
+
+# 13. License
 [Apache License 2.0](https://github.com/DeepWisdom/AutoDL/blob/master/LICENSE)
