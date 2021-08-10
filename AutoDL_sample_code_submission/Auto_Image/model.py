@@ -1,34 +1,38 @@
-from learner import MyLearner           # Not used for now
+from learner import MyLearner
 from hp_optimizer import MyHPOptimizer
-from data_ingestor import MyDataIngestor
+from data_ingestor import MyDataIngestor2 as MyDataIngestor
 
 
 class Model():
 
     def __init__(self, metadata):
-        # `training_info` starts with the metadata and can be updated to store 
+        # `train_info` starts with the metadata and can be updated to store 
         # any intermediate training information
-        self.training_info = {}
-        self.training_info['metadata'] = metadata
+        train_info = {}
+        train_info['metadata'] = metadata
 
         # Instantiate an HPOptimizer
-        self.hp_optimizer = MyHPOptimizer()
+        hp_optimizer = MyHPOptimizer()
 
         # Instantiate a DataIngestor
-        self.data_ingestor = MyDataIngestor()
+        data_ingestor = MyDataIngestor(info=train_info)
 
         # Get learner using the HPOptimizer. 
         # The learner can absorb `training_info` as its own attribute
-        self.learner = self.hp_optimizer.fit(self.training_info)
+        self.learner = MyLearner(
+            hp_optimizer=hp_optimizer,
+            data_ingestor=data_ingestor,
+            train_info=train_info,
+        ) 
 
         self.done_training = False
 
     def train(self, dataset, remaining_time_budget=None):
-        dataset_uw = self.data_ingestor.ingest(dataset)    # uw for universal workflow
+        dataset_uw = self.learner.data_ingestor.ingest(dataset, mode='train')    # uw for universal workflow
         self.predictor = self.learner.learn(dataset_uw)
-        # self.done_training = True
 
     def test(self, dataset, remaining_time_budget=None):
-        dataset_uw = self.data_ingestor.ingest(dataset)
+        dataset_uw = self.learner.data_ingestor.ingest(dataset, mode='test')
         predictions = self.predictor.predict(dataset_uw)
+        self.done_training = True
         return predictions

@@ -1,4 +1,4 @@
-from automl_workflow.api import HPOptimizer, Learner
+from automl_workflow.api import HPOptimizer, Learner, ClassicLearner
 
 from learner import MyLearner
 from architectures.resnet import ResNet9, ResNet18
@@ -12,8 +12,8 @@ class MyHPOptimizer(HPOptimizer):
     def __init__(self):
         pass
 
-    def fit(self, training_info: dict) -> Learner:
-        metadata = training_info['metadata']
+    def fit(self, train_info: dict) -> ClassicLearner:
+        metadata = train_info['metadata']
         logic_model = Model(metadata)
 
         in_channels = logic_model.info['dataset']['shape'][-1]
@@ -28,11 +28,11 @@ class MyHPOptimizer(HPOptimizer):
         learner = MyLearner()
         learner.backbone_model = backbone_model
         
-        # Absorb `training_info` to keep track of training
-        if hasattr(learner, 'training_info'):
-            for key in training_info:
-                learner.training_info[key] = training_info[key]
+        # Absorb `train_info` to keep track of training
+        if hasattr(learner, 'train_info'):
+            for key in train_info:
+                learner.train_info[key] = train_info[key]
         else:
-            learner.training_info = training_info
+            learner.train_info = train_info
 
         return learner

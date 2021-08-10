@@ -17,4 +17,4 @@ class MyDataLoader(object):
         # pt_dataloader = torch.utils.data.DataLoader(dataset, batch_size=4,
         #                             shuffle=train, num_workers=2)
         # return pt_dataloader
-        return FixedSizeDataLoader(dataset)
+        return FixedSizeDataLoader(dataset, steps=50).dataloader

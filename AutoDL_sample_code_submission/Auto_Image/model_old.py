@@ -79,6 +79,7 @@ class Model(LogicModel):
 
 
     def update_model(self):
+        """Adapt the loss function according to `self.is_multiclass`"""
         num_class = self.info['dataset']['num_class']
 
         epsilon = min(0.1, max(0.001, 0.001 * pow(num_class / 10, 2)))
